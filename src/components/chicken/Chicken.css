@@ -23,137 +23,204 @@
   transform: translate(-50%, -50%) scale(0.9);
 }
 
-/* Animación para caminar */
-.chicken-walking {
-  animation: walk-animation 1.2s ease-in-out;
-}
+/* Animaciones base para desktop */
+@media (min-width: 769px) {
+  .chicken-walking {
+    animation: walk-animation 1.2s ease-in-out;
+  }
 
-@keyframes walk-animation {
-  0% {
-    transform: translate(-50%, -50%) rotate(-1.5deg) translateY(0);
+  .chicken-pulse {
+    animation: pulse 2s ease-in-out infinite;
   }
-  15% {
-    transform: translate(-50%, -50%) rotate(1deg) translateY(-5px);
-  }
-  30% {
-    transform: translate(-50%, -50%) rotate(-1deg) translateY(0);
-  }
-  45% {
-    transform: translate(-50%, -50%) rotate(1.5deg) translateY(-5px);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(-1.5deg) translateY(0);
-  }
-  75% {
-    transform: translate(-50%, -50%) rotate(1deg) translateY(-5px);
-  }
-  90% {
-    transform: translate(-50%, -50%) rotate(-1deg) translateY(0);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(0) translateY(0);
-  }
-}
 
-/* Animación de pulsación constante para llamar la atención */
-.chicken-pulse {
-  animation: pulse 2s ease-in-out infinite;
-}
+  .chicken-jumping {
+    animation: jump-animation 0.8s ease-in-out;
+  }
 
-/* Animación simplificada de nacimiento */
-.chicken-birth {
-  animation: chicken-birth 1s linear forwards;
-  pointer-events: none;
-  z-index: 20;
-}
+  .chicken-clucking {
+    animation: cluck 0.6s ease-in-out;
+  }
 
-/* Animación de salto */
-.chicken-jumping {
-  animation: jump-animation 0.8s ease-in-out;
-  pointer-events: none;
-  z-index: 20;
-}
+  .chicken-landed {
+    animation: land 0.6s ease-out forwards;
+  }
 
-@keyframes jump-animation {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
+  @keyframes walk-animation {
+    0% {
+      transform: translate(-50%, -50%) rotate(-1.5deg) translateY(0);
+    }
+    15% {
+      transform: translate(-50%, -50%) rotate(1deg) translateY(-5px);
+    }
+    30% {
+      transform: translate(-50%, -50%) rotate(-1deg) translateY(0);
+    }
+    45% {
+      transform: translate(-50%, -50%) rotate(1.5deg) translateY(-5px);
+    }
+    60% {
+      transform: translate(-50%, -50%) rotate(-1.5deg) translateY(0);
+    }
+    75% {
+      transform: translate(-50%, -50%) rotate(1deg) translateY(-5px);
+    }
+    90% {
+      transform: translate(-50%, -50%) rotate(-1deg) translateY(0);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(0) translateY(0);
+    }
   }
-  50% {
-    transform: translate(-50%, -70%) scale(1.1) rotate(5deg);
-  }
-  75% {
-    transform: translate(-50%, -60%) scale(1.05) rotate(-5deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1) rotate(0);
-  }
-}
 
-.chicken-landed {
-  animation: land 0.6s ease-out forwards;
-}
+  @keyframes pulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+  }
 
-/* Animación de cacareo */
-.chicken-clucking {
-  animation: cluck 0.6s ease-in-out;
-}
+  @keyframes jump-animation {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -90%) scale(1.1) rotate(5deg);
+    }
+    75% {
+      transform: translate(-50%, -70%) scale(1.05) rotate(-5deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1) rotate(0);
+    }
+  }
 
-/* Animaciones originales para compatibilidad */
-@keyframes chicken-birth {
-  0% {
-    transform: translateY(-50%, -50%) scale(0.2);
-    opacity: 0;
-    filter: brightness(1.5) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.2));
+  @keyframes cluck {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2) translateY(-5px);
+    }
   }
-  40% {
-    transform: translate(-50%, -150%) scale(0.7);
-    opacity: 0.8;
-    filter: brightness(1.3) drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
-  }
-  80% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-    filter: brightness(1.1) drop-shadow(0 6px 6px rgba(0, 0, 0, 0.3));
-  }
-  90% {
-    transform: translate(-50%, -52%) scale(0.95);
-    opacity: 1;
-    filter: brightness(1) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.2));
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-    filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.2));
+
+  @keyframes land {
+    0% {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(0.9) translateY(3px);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1) translateY(0);
+    }
   }
 }
 
-/* Mantener animaciones originales */
-@keyframes land {
-  0% {
-    transform: translate(-50%, -50%) scale(1.1);
+/* Responsive para dispositivos móviles */
+@media (max-width: 768px) {
+  .chicken {
+    transform: translate(-50%, -50%) scale(0.5);
   }
-  50% {
-    transform: translate(-50%, -50%) scale(0.9) translateY(3px);
+  
+  .chicken:hover {
+    transform: translate(-50%, -50%) scale(0.6);
   }
-  100% {
-    transform: translate(-50%, -50%) scale(1) translateY(0);
+  
+  .chicken:active {
+    transform: translate(-50%, -50%) scale(0.45);
   }
-}
 
-@keyframes cluck {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+  .chicken-walking {
+    animation: walk-animation-mobile 1.2s ease-in-out !important;
   }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2) translateY(-5px);
-  }
-}
 
-@keyframes pulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+  .chicken-pulse {
+    animation: pulse-mobile 2s ease-in-out infinite !important;
   }
-  50% {
-    transform: translate(-50%, -50%) scale(1.05);
+
+  .chicken-jumping {
+    animation: jump-animation-mobile 0.8s ease-in-out !important;
+  }
+
+  .chicken-clucking {
+    animation: cluck-mobile 0.6s ease-in-out !important;
+  }
+
+  .chicken-landed {
+    animation: land-mobile 0.6s ease-out forwards !important;
+  }
+
+  @keyframes walk-animation-mobile {
+    0% {
+      transform: translate(-50%, -50%) scale(0.5) rotate(-1.5deg);
+    }
+    15% {
+      transform: translate(-50%, -50%) scale(0.5) rotate(1deg) translateY(-2px);
+    }
+    30% {
+      transform: translate(-50%, -50%) scale(0.5) rotate(-1deg);
+    }
+    45% {
+      transform: translate(-50%, -50%) scale(0.5) rotate(1.5deg) translateY(-2px);
+    }
+    60% {
+      transform: translate(-50%, -50%) scale(0.5) rotate(-1.5deg);
+    }
+    75% {
+      transform: translate(-50%, -50%) scale(0.5) rotate(1deg) translateY(-2px);
+    }
+    90% {
+      transform: translate(-50%, -50%) scale(0.5) rotate(-1deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(0.5) rotate(0);
+    }
+  }
+
+  @keyframes pulse-mobile {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(0.55);
+    }
+  }
+
+  @keyframes jump-animation-mobile {
+    0% {
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+      transform: translate(-50%, -80%) scale(0.5) rotate(5deg);
+    }
+    75% {
+      transform: translate(-50%, -65%) scale(0.5) rotate(-5deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(0.5) rotate(0);
+    }
+  }
+
+  @keyframes cluck-mobile {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+      transform: translate(-50%, -52%) scale(0.55);
+    }
+  }
+
+  @keyframes land-mobile {
+    0% {
+      transform: translate(-50%, -50%) scale(0.55);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(0.45) translateY(2px);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(0.5);
+    }
   }
 }

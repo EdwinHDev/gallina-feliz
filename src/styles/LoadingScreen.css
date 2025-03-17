@@ -239,4 +239,92 @@
   75% {
     transform: translateY(-30px) scale(1.05) rotate(5deg);
   }
+}
+
+/* Media queries para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  .loading-content {
+    padding: 25px 20px;
+    width: 90%;
+    max-width: 450px;
+    border-width: 6px;
+  }
+  
+  .loading-logo {
+    width: 180px;
+    margin-bottom: 20px;
+  }
+  
+  .loading-bar-container {
+    height: 28px;
+    border-width: 3px;
+  }
+  
+  .loading-icons {
+    top: -12px;
+  }
+  
+  .loading-icon {
+    font-size: 18px;
+  }
+  
+  .loading-text {
+    font-size: 22px;
+    margin-top: 10px;
+  }
+  
+  .loading-text::after {
+    font-size: 24px;
+    right: -30px;
+    bottom: 0;
+  }
+  
+  .loading-animal {
+    width: 60px;
+  }
+}
+
+/* Para teléfonos más pequeños */
+@media screen and (max-width: 480px) {
+  .loading-content {
+    padding: 20px 15px;
+    width: 92%;
+    max-width: none;
+    border-width: 5px;
+  }
+  
+  .loading-logo {
+    width: 150px;
+    margin-bottom: 15px;
+  }
+  
+  .loading-bar-container {
+    height: 24px;
+  }
+  
+  .loading-icons {
+    top: -10px;
+  }
+  
+  .loading-icon {
+    font-size: 16px;
+  }
+  
+  .loading-text {
+    font-size: 20px;
+    margin-top: 8px;
+  }
+  
+  .loading-text::after {
+    font-size: 22px;
+    right: -25px;
+  }
+  
+  .loading-animal {
+    width: 50px;
+  }
+  
+  .cloud {
+    width: 150px;
+  }
 } 

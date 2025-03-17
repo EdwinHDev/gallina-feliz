@@ -1,7 +1,7 @@
 .settings-button {
   position: fixed;
   bottom: 20px;
-  right: 130px;
+  right: 160px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -172,6 +172,15 @@ input[type="range"]:disabled {
 
 /* Para pantallas pequeñas */
 @media (max-width: 500px) {
+  .settings-button {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    right: 120px;
+    bottom: 15px;
+    border-width: 2px;
+  }
+  
   .settings-menu {
     width: 90%;
     padding: 20px;
@@ -182,6 +191,32 @@ input[type="range"]:disabled {
   }
   
   .volume-control label {
-    font-size: 16px;
+    font-size: 18px;
+  }
+  
+  .close-button {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+  
+  .mute-button {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+  
+  .volume-control input[type="range"] {
+    height: 16px;
+  }
+  
+  .volume-control input[type="range"]::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .volume-control input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
   }
 } 

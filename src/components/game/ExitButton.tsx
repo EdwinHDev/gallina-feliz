@@ -15,7 +15,6 @@ const ExitButton: React.FC = () => {
       title="Terminar juego y volver al inicio"
     >
       <span className="exit-icon">🏠</span>
-      <span className="exit-text">Salir</span>
     </button>
   );
 };

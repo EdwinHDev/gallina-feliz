@@ -6,6 +6,7 @@ import ScoreBoard from '../ScoreBoard/ScoreBoard';
 import BackgroundMusic from '../audio/BackgroundMusic';
 import SettingsMenu from '../settings/SettingsMenu';
 import ExitButton from './ExitButton';
+import ResetButton from './ResetButton';
 import { LoadingScreen, StartScreen } from '../screens/Screens';
 import { EggState } from '../../types/types';
 import './Game.css';
@@ -133,6 +134,7 @@ const Game: React.FC = () => {
       
       {/* Botones de control */}
       <SettingsMenu />
+      <ResetButton />
       <ExitButton />
       
       {/* Marcador */}

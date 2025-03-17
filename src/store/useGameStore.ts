@@ -37,6 +37,7 @@ interface GameState {
   toggleEffectsMute: () => void;
   toggleSettingsMenu: () => void;
   exitGame: () => void;
+  resetGame: () => void;
 }
 
 const initialState = {
@@ -415,6 +416,29 @@ export const useGameStore = create<GameState>((set, get) => ({
         isEffectsMuted: false
       },
       currentScreen: 'start' as GameScreen,
+      isSettingsMenuOpen: false
+    }));
+  },
+  
+  resetGame: () => {
+    set(state => ({
+      chickens: [{ id: 'initial', position: { x: 50, y: 50 } }],
+      eggs: [],
+      usedPositions: [{ x: 50, y: 50 }],
+      eggCount: 0,
+      chickenAnimationStates: {
+        'initial': {
+          isHatching: false,
+          isJumping: false,
+          hasLanded: false,
+          isClucking: false,
+          isWalking: false
+        }
+      },
+      audioConfig: {
+        ...state.audioConfig
+      },
+      currentScreen: 'game' as GameScreen,
       isSettingsMenuOpen: false
     }));
   }

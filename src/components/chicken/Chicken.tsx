@@ -29,14 +29,20 @@ const Chicken: React.FC<ChickenProps> = ({ id, position }) => {
         clearTimeout(birthTimeoutRef.current);
       }
       
-      // Programar el fin de la animación de nacimiento
+      // Reproducir el sonido de salto y cacareo
+      try {
+        playSound(SOUNDS.JUMP, 0.4);
+        playSound(SOUNDS.CLUCK, 0.7);
+      } catch (error) {
+        console.log('Sonidos no disponibles');
+      }
+      
+      // Programar el fin de la animación
       birthTimeoutRef.current = setTimeout(() => {
         updateChickenAnimationState(id, {
-          isHatching: false,
-          isJumping: false,
-          hasLanded: true
+          isHatching: false
         });
-      }, 1000); // Duración de la animación de nacimiento
+      }, 800); // Duración de la animación de salto
     }
     
     return () => {
@@ -138,7 +144,7 @@ const Chicken: React.FC<ChickenProps> = ({ id, position }) => {
   
   // Determinar la animación del SVG
   const getAnimation = () => {
-    if (isHatching) return 'birth';
+    if (isHatching) return 'jump';
     if (isClucking) return 'cluck';
     if (isJumping) return 'jump';
     if (isWalking) return 'walk';
@@ -148,7 +154,7 @@ const Chicken: React.FC<ChickenProps> = ({ id, position }) => {
   // Determinar la clase CSS a aplicar
   const getChickenClassName = () => {
     let className = 'chicken';
-    if (isHatching) className += ' chicken-birth';
+    if (isHatching) className += ' chicken-jumping';
     if (isJumping) className += ' chicken-jumping';
     if (isWalking) className += ' chicken-walking chicken-moving';
     return className;

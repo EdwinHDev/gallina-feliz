@@ -1,7 +1,7 @@
-.exit-button {
+.reset-button {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 85px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -17,56 +17,25 @@
   transition: all 0.3s ease;
 }
 
-.exit-button:hover {
-  transform: scale(1.1);
+.reset-button:hover {
+  transform: rotate(180deg) scale(1.1);
   background: rgba(255, 255, 255, 1);
   box-shadow: 0 7px 0 rgba(0, 0, 0, 0.2);
 }
 
-.exit-button:active {
-  transform: scale(0.95);
+.reset-button:active {
+  transform: rotate(180deg) scale(0.95);
   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* Para pantallas pequeñas */
 @media (max-width: 500px) {
-  .exit-button {
+  .reset-button {
     width: 45px;
     height: 45px;
-    right: 10px;
+    font-size: 22px;
+    right: 65px;
     bottom: 15px;
     border-width: 2px;
   }
-
-  .exit-icon {
-    font-size: 22px;
-  }
-}
-
-.exit-icon {
-  display: inline-block;
-  font-size: 24px;
-  color: #ff6b6b;
-}
-
-.exit-text {
-  display: inline-block;
-  font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
-}
-
-/* Animación sutil para llamar la atención */
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.exit-button {
-  animation: pulse 2s infinite;
 } 
