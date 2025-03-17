@@ -1,0 +1,60 @@
+.score-board {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px 25px;
+  border-radius: 30px;
+  border: 4px solid #ffcc29;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+  transform: rotate(-2deg);
+  transition: all 0.3s ease;
+}
+
+.score-board:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.score-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.score-icon {
+  font-size: 2.5rem;
+  animation: eggWiggle 3s infinite;
+}
+
+.score-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff7a18;
+  text-shadow: 2px 2px 0 white;
+}
+
+.score-label {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff7a18;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes eggWiggle {
+  0%, 100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}

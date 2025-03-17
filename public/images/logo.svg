@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo de la granja -->
+  <rect width="300" height="150" rx="10" fill="#FCFD2F" />
+  
+  <!-- Sol -->
+  <circle cx="40" cy="40" r="25" fill="#FFA500" />
+  <line x1="40" y1="5" x2="40" y2="15" stroke="#FFA500" stroke-width="3" />
+  <line x1="40" y1="65" x2="40" y2="75" stroke="#FFA500" stroke-width="3" />
+  <line x1="5" y1="40" x2="15" y2="40" stroke="#FFA500" stroke-width="3" />
+  <line x1="65" y1="40" x2="75" y2="40" stroke="#FFA500" stroke-width="3" />
+  <line x1="16" y1="16" x2="26" y2="26" stroke="#FFA500" stroke-width="3" />
+  <line x1="54" y1="54" x2="64" y2="64" stroke="#FFA500" stroke-width="3" />
+  <line x1="16" y1="64" x2="26" y2="54" stroke="#FFA500" stroke-width="3" />
+  <line x1="54" y1="26" x2="64" y2="16" stroke="#FFA500" stroke-width="3" />
+  
+  <!-- Pollo y huevo -->
+  <circle cx="220" cy="70" r="30" fill="#FFFFFF" />
+  <circle cx="220" cy="60" r="20" fill="#FCFD2F" />
+  <circle cx="215" cy="55" r="5" fill="#513A08" />
+  <circle cx="225" cy="55" r="5" fill="#513A08" />
+  <path d="M215 68 Q220 73, 225 68" stroke="#513A08" stroke-width="2" fill="none" />
+  <path d="M200 50 L205 45 L210 50" fill="#E40044" />
+  <path d="M230 50 L235 45 L240 50" fill="#E40044" />
+  
+  <!-- Texto del logo -->
+  <text x="150" y="120" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="#513A08">GRANJITA FELIZ</text>
+</svg> 
