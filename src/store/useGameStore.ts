@@ -66,7 +66,7 @@ const initialState = {
 };
 
 // Función auxiliar para comparar estados y evitar actualizaciones innecesarias
-const shallowEqual = (obj1: any, obj2: any) => {
+/* const shallowEqual = (obj1: any, obj2: any) => {
   if (obj1 === obj2) return true;
   if (!obj1 || !obj2) return false;
   
@@ -80,7 +80,7 @@ const shallowEqual = (obj1: any, obj2: any) => {
   }
   
   return true;
-};
+}; */
 
 // Función para generar un número aleatorio entre min y max
 const getRandomInterval = (min: number, max: number) => {

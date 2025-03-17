@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useGameStore } from '../../store/useGameStore';
 import './BackgroundMusic.css';
 
@@ -14,7 +14,7 @@ const BackgroundMusic: React.FC<BackgroundMusicProps> = ({
   loop = true
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  /* const [isPlaying, setIsPlaying] = useState(autoPlay); */
   
   // Obtener el volumen y estado de silenciado de la música desde el store
   const musicVolume = useGameStore(state => state.audioConfig.musicVolume);
@@ -45,12 +45,12 @@ const BackgroundMusic: React.FC<BackgroundMusicProps> = ({
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            setIsPlaying(true);
+            /* setIsPlaying(true); */
           })
           .catch(error => {
             // La reproducción automática fue impedida (política del navegador)
             console.warn('Autoplay was prevented:', error);
-            setIsPlaying(false);
+            /* setIsPlaying(false); */
           });
       }
     }

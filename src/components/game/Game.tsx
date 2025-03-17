@@ -52,7 +52,7 @@ const Game: React.FC = () => {
   const currentScreen = useGameStore(state => state.currentScreen);
   
   // Acciones para cambiar de pantalla
-  const setMusicPlaying = () => {}; // Mantenemos esto para compatibilidad
+  // const setMusicPlaying = () => {}; // Mantenemos esto para compatibilidad
   
   // Usar selectores estables con useCallback para evitar re-renderizados infinitos
   const chickens = useGameStore(useCallback(state => state.chickens, []));
