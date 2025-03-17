@@ -33,6 +33,16 @@
   animation: wobble 3s infinite;
 }
 
+.start-logo-link {
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.start-logo-link:hover {
+  transform: scale(1.1);
+}
+
 .start-title {
   font-size: 46px;
   color: #ff7a18;

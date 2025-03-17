@@ -10,11 +10,13 @@ const SettingsMenu: React.FC = () => {
   const effectsVolume = useGameStore(state => state.audioConfig.effectsVolume);
   const isMusicMuted = useGameStore(state => state.audioConfig.isMusicMuted);
   const isEffectsMuted = useGameStore(state => state.audioConfig.isEffectsMuted);
+  const maxChickens = useGameStore(state => state.maxChickens);
   
   const setMusicVolume = useGameStore(state => state.setMusicVolume);
   const setEffectsVolume = useGameStore(state => state.setEffectsVolume);
   const toggleMusicMute = useGameStore(state => state.toggleMusicMute);
   const toggleEffectsMute = useGameStore(state => state.toggleEffectsMute);
+  const setMaxChickens = useGameStore(state => state.setMaxChickens);
 
   // Convertir valores de volumen (0-1) a porcentajes (0-100)
   const musicVolumePercent = Math.round(musicVolume * 100);
@@ -33,6 +35,11 @@ const SettingsMenu: React.FC = () => {
   const handleEffectsVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = Number(e.target.value) / 100;
     setEffectsVolume(newVolume);
+  };
+
+  const handleMaxChickensChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newCount = Number(e.target.value);
+    setMaxChickens(newCount);
   };
 
   return (
@@ -105,6 +112,22 @@ const SettingsMenu: React.FC = () => {
                 value={effectsVolumePercent}
                 onChange={handleEffectsVolumeChange}
                 disabled={isEffectsMuted}
+              />
+            </div>
+
+            <div className="volume-control">
+              <div className="volume-header">
+                <label htmlFor="max-chickens">
+                  Cantidad de Pollos: {maxChickens}
+                </label>
+              </div>
+              <input
+                id="max-chickens"
+                type="range"
+                min="10"
+                max="100"
+                value={maxChickens}
+                onChange={handleMaxChickensChange}
               />
             </div>
           </div>

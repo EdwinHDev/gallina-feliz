@@ -9,11 +9,18 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStartGame }) => {
   return (
     <div className="start-screen">
       <div className="start-content">
-        <img 
-          src="/images/logo.png" 
-          alt="Gallina Feliz" 
-          className="start-logo"
-        />
+        <a 
+          href="https://lojitastudio.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="start-logo-link"
+        >
+          <img 
+            src="/images/logo.png" 
+            alt="Gallina Feliz" 
+            className="start-logo"
+          />
+        </a>
         <h1 className="start-title">Gallina Feliz</h1>
         <p className="start-subtitle">¡Cría tus animales y cosecha felicidad!</p>
         <button 

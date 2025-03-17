@@ -8,6 +8,7 @@ import SettingsMenu from '../settings/SettingsMenu';
 import ExitButton from './ExitButton';
 import ResetButton from './ResetButton';
 import { LoadingScreen, StartScreen } from '../screens/Screens';
+import VictoryScreen from '../screens/VictoryScreen';
 import { EggState } from '../../types/types';
 import './Game.css';
 
@@ -119,7 +120,7 @@ const Game: React.FC = () => {
     return <StartScreen onStartGame={handleStartGame} />;
   }
   
-  // Pantalla de juego
+  // Pantalla de juego (ahora incluye el modal de victoria cuando corresponda)
   return (
     <div className="game-container">
       {/* Música de fondo */}
@@ -128,6 +129,16 @@ const Game: React.FC = () => {
         autoPlay={true} 
         loop={true} 
       />
+
+      {/* Logo con enlace */}
+      <a 
+        href="https://lojitastudio.com" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="studio-logo"
+      >
+        <img src="/images/logo.png" alt="Lojita Studio" />
+      </a>
 
       {/* Elementos decorativos */}
       <GameDecorations />
@@ -158,6 +169,9 @@ const Game: React.FC = () => {
           position={chicken.position}
         />
       ))}
+
+      {/* Modal de victoria */}
+      {currentScreen === 'victory' && <VictoryScreen />}
     </div>
   );
 };

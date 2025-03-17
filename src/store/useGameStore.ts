@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { Position, Egg, Chicken, ChickenAnimationState } from '../types/types';
 
 // Posibles pantallas de la aplicación
-export type GameScreen = 'loading' | 'start' | 'game';
+export type GameScreen = 'loading' | 'start' | 'game' | 'victory';
 
 // Añadir interfaz para la configuración de audio
 interface AudioConfig {
@@ -21,6 +21,7 @@ interface GameState {
   audioConfig: AudioConfig;
   currentScreen: GameScreen;
   isSettingsMenuOpen: boolean;
+  maxChickens: number;
   
   // Acciones
   addEgg: (parentId: string, position: Position) => void;
@@ -38,6 +39,7 @@ interface GameState {
   toggleSettingsMenu: () => void;
   exitGame: () => void;
   resetGame: () => void;
+  setMaxChickens: (count: number) => void;
 }
 
 const initialState = {
@@ -45,6 +47,7 @@ const initialState = {
   eggs: [],
   usedPositions: [{ x: 50, y: 50 }],
   eggCount: 0,
+  maxChickens: Number(localStorage.getItem('maxChickens')) || 50,
   // Inicializamos el estado de animación para el pollo inicial
   chickenAnimationStates: {
     'initial': {
@@ -93,6 +96,15 @@ export const useGameStore = create<GameState>((set, get) => ({
   
   // Acción para añadir un huevo
   addEgg: (parentId: string, position: Position) => {
+    const { chickens, maxChickens } = get();
+    
+    // Verificar si ya alcanzamos el límite de pollos (excluyendo el inicial)
+    const chickenCount = chickens.filter(c => c.id !== 'initial').length;
+    if (chickenCount >= maxChickens) {
+      set({ currentScreen: 'victory' });
+      return;
+    }
+    
     const newEgg: Egg = {
       id: Date.now(),
       position: { ...position },
@@ -262,15 +274,30 @@ export const useGameStore = create<GameState>((set, get) => ({
   
   // Iniciar el proceso de eclosión
   startHatching: () => {
-    const { eggs, chickens } = get();
+    const { eggs, chickens, maxChickens } = get();
+    
+    // Verificar si ya alcanzamos el límite de pollos (excluyendo el inicial)
+    const chickenCount = chickens.filter(c => c.id !== 'initial').length;
+    if (chickenCount >= maxChickens) {
+      set({ currentScreen: 'victory' });
+      return;
+    }
+    
     const hatchingEggs = eggs.filter(egg => 
       egg.state === 'hatching' && 
-      !egg.chickenId // Solo procesar huevos que aún no tengan un chickenId asignado
+      !egg.chickenId
     );
     
     if (hatchingEggs.length === 0) return;
 
     hatchingEggs.forEach(egg => {
+      // Verificar nuevamente el límite antes de crear cada pollo
+      const currentChickenCount = get().chickens.filter(c => c.id !== 'initial').length;
+      if (currentChickenCount >= maxChickens) {
+        set({ currentScreen: 'victory' });
+        return;
+      }
+
       // Generar un ID único para el nuevo pollo
       const chickenId = `chicken-${egg.id}-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
       
@@ -278,28 +305,36 @@ export const useGameStore = create<GameState>((set, get) => ({
       if (chickens.some(chicken => chicken.id === chickenId)) return;
       
       // Crear inmediatamente el pollo visible y asignar ID al huevo en estado hatching
-      set(state => ({
-        // Crear el nuevo pollo 
-        chickens: [...state.chickens, {
-          id: chickenId,
-          position: { ...egg.position }
-        }],
-        // Configurar estado de animación para iniciar nacimiento
-        chickenAnimationStates: {
-          ...state.chickenAnimationStates,
-          [chickenId]: {
-            isHatching: true,
-            isJumping: false, 
-            hasLanded: false,
-            isClucking: false,
-            isWalking: false
-          }
-        },
-        // Asignar el chickenId al huevo manteniendo estado 'hatching'
-        eggs: state.eggs.map(e => 
-          e.id === egg.id ? { ...e, chickenId } : e
-        )
-      }));
+      set(state => {
+        const newState = {
+          ...state,
+          chickens: [...state.chickens, {
+            id: chickenId,
+            position: { ...egg.position }
+          }],
+          chickenAnimationStates: {
+            ...state.chickenAnimationStates,
+            [chickenId]: {
+              isHatching: true,
+              isJumping: false, 
+              hasLanded: false,
+              isClucking: false,
+              isWalking: false
+            }
+          },
+          eggs: state.eggs.map(e => 
+            e.id === egg.id ? { ...e, chickenId } : e
+          )
+        };
+
+        // Verificar si con este nuevo pollo alcanzamos el límite (excluyendo el inicial)
+        const finalChickenCount = newState.chickens.filter(c => c.id !== 'initial').length;
+        if (finalChickenCount === maxChickens) {
+          newState.currentScreen = 'victory';
+        }
+
+        return newState;
+      });
       
       // Después del tiempo en estado 'hatching' (1 segundo), 
       // cambiamos el huevo a estado 'disappeared' para iniciar la animación de desvanecimiento
@@ -322,6 +357,14 @@ export const useGameStore = create<GameState>((set, get) => ({
   
   // Finalizar el proceso de eclosión
   finishHatching: (eggId: number) => {
+    const { chickens, maxChickens } = get();
+    
+    if (chickens.length >= maxChickens) {
+      // Si llegamos al límite, mostramos el modal de victoria
+      set({ currentScreen: 'victory' });
+      return;
+    }
+    
     set(state => ({
       eggs: state.eggs.filter(egg => egg.id !== eggId)
     }));
@@ -441,5 +484,10 @@ export const useGameStore = create<GameState>((set, get) => ({
       currentScreen: 'game' as GameScreen,
       isSettingsMenuOpen: false
     }));
+  },
+  
+  setMaxChickens: (count: number) => {
+    set({ maxChickens: count });
+    localStorage.setItem('maxChickens', count.toString());
   }
 }));

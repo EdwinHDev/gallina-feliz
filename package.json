@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/canvas-confetti": "^1.9.0",
+    "canvas-confetti": "^1.9.3",
     "immer": "^10.1.1",
     "nanoid": "^5.1.4",
     "react": "^19.0.0",

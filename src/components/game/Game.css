@@ -123,3 +123,40 @@
     transform: translateX(calc(100vw + 120px));
   }
 }
+
+.studio-logo {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.studio-logo img {
+  width: 120px;
+  height: auto;
+}
+
+.studio-logo:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .studio-logo {
+    top: unset;
+    bottom: 10px;
+    left: 10px;
+    transform: translate(0, 0);
+  }
+  .studio-logo img {
+    width: 100px;
+  }
+  .studio-logo:hover {
+    transform: translate(0, 0) scale(1.1);
+  }
+}
+
+

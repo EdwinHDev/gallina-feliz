@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/LoadingScreen.css';
 import '../../styles/StartScreen.css';
+import VictoryScreen from './VictoryScreen';
+import { useGameStore } from '../../store/useGameStore';
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -74,11 +76,18 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStartGame }) => {
       <img src="/images/cow.png" alt="" className="farm-animal animal2" />
       
       <div className="start-content">
-        <img 
-          src="/images/logo.png" 
-          alt="Gallina Feliz" 
-          className="start-logo"
-        />
+      <a 
+          href="https://lojitastudio.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="start-logo-link"
+        >
+          <img 
+            src="/images/logo.png" 
+            alt="Gallina Feliz" 
+            className="start-logo"
+          />
+        </a>
         <h1 className="start-title">Gallina Feliz</h1>
         <p className="start-subtitle">¡Cría tus pollitos y diviértete!</p>
         <button 
@@ -88,6 +97,20 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStartGame }) => {
           ¡Jugar!
         </button>
       </div>
+    </div>
+  );
+};
+
+export const GameScreen: React.FC = () => {
+  const currentScreen = useGameStore(state => state.currentScreen);
+  
+  if (currentScreen === 'victory') {
+    return <VictoryScreen />;
+  }
+  
+  return (
+    <div className="game-screen">
+      {/* Contenido existente del juego */}
     </div>
   );
 }; 
